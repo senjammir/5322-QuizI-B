@@ -12,38 +12,64 @@ Iternate through the dictionary to print out their name and thier new salary (as
 
 import csv
 
-#open the file
+# open the file
+
+infile = open('employee_data.csv', 'r')
+
+new_dict = {}
+emp_name = []
+emp_salary = []
+emp_newsal = []
+
+count = 1
+for i in infile.readlines():
+    i = i.split(',')
+    if count == 1:
+        emp_salary = []
+        count += 1
+    else:
+        emp_name.append(f"{i[1]+ ' ' + i[2]}")
+        emp_salary.append(f"{i[5]}")
+        sal = i[5]
+        new_sal = int(sal) * 1.1
+        emp_newsal.append(round(new_sal, 2))
+        count += 1
+
+for i in range(len(emp_name)):
+    new_dict[emp_name[i]] = emp_newsal[i]
+
+print(new_dict)
 
 
-
-
-#create an empty dictionary
-
-
-#use a loop to iterate through the csv file
-
-
-    #check if the employee fits the search criteria
-
-
-    
+for i in range(len(emp_name)):
+    print(f"Employee Name: {emp_name[i]} Current Salary: ${emp_salary[i]}")
 
 print()
 print('=========================================')
 print()
 
-#iternate through the dictionary and print out the key and value as per image
+# iternate through the dictionary and print out the key and value as per image
 
-
-
-
-          
+for key, value in new_dict.items():
+    print(f"Employee Name: {key} New Salary: ${value}")
 
 print()
 print('=========================================')
 print()
 
-#print out the total difference between the old salary and the new salary as per image.
+# print out the total difference between the old salary and the new salary as per image.
 
-        
-    
+count_sal = 0
+count_newsal = 0
+
+for i in range(len(emp_salary)):
+    old_sal = int(emp_salary[i])
+    count_sal += old_sal
+
+for i in range(len(emp_newsal)):
+    new_sal = int(emp_newsal[i])
+    count_newsal += new_sal
+
+inc_sal = count_newsal - count_sal
+
+print(f"Total increase in salary: ${round(inc_sal,2)}")
