@@ -38,11 +38,10 @@ for i in infile.readlines():
 for i in range(len(emp_name)):
     new_dict[emp_name[i]] = emp_newsal[i]
 
-print(new_dict)
-
 
 for i in range(len(emp_name)):
-    print(f"Employee Name: {emp_name[i]} Current Salary: ${emp_salary[i]}")
+    print(
+        f"Employee Name: {emp_name[i]} Current Salary: ${(emp_salary[i])}")
 
 print()
 print('=========================================')
